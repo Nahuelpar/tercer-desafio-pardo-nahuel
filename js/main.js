@@ -9,50 +9,48 @@ let edad = prompt("Cuantos años tenes"); {
     }
 }
 
-let productos = prompt("Seleccione el producto deseado: \n1-Fernet Branca. \n2-Gancia. \n3-Voodka Absolut. \n4-Aperol. \n5-whiskey jack daniels. \n6-jagermeister. \nPresioná X para finalizar.");
-let precioFernet = 1200;
-let precioGancia = 800;
-let precioVoodka = 1500;
-let precioAperol = 900;
-let precioWhiskey = 2000;
-let precioJagermeister = 2000;
+const productos = [
+    { id: 1, nombre: "Fernet Branca", precio: 1500, },
+    { id: 2, nombre: "Gancia", precio: 900, },
+    { id: 3, nombre: "Voodka Absolut", precio: 2500, },
+    { id: 4, nombre: "Aperol", precio: 1500, },
+    { id: 5, nombre: "Whiskey Jack Daniels", precio: 3500, },
+    { id: 6, nombre: "Jagermeister", precio: 2500, },
+    { id: 7, nombre: "Campari", precio: 1200, },
+];
 
-while (productos != "X" && productos != "x")
-    switch (productos) {
-        case "1":
-            alert("El Fernet Branca esta $" + precioFernet);
-            break;
-        case "2":
-            alert("El Gancia esta $" + precioGancia);
-            break;
-        case "3":
-            alert("El voodka Absolut esta $" + precioVoodka);
-            break;
-        case "4":
-            alert("El Aperol esta $" + precioAperol);
-            break;
-        case "5":
-            alert("El Whiskey Jack Daniels esta $" + precioWhiskey);
-            break;
-        case "6":
-            alert("El jagermeister esta $" + precioJagermeister);
-            break;
-
-        default:
-            alert("opcion no valida");
-            break;
-
-
-
-    }
-
-
-let cantidad = parseInt(prompt("Ingrese cantidad"));
-function calcularprecio(productos, cantidad) {
-    for (let i = 0; i < 5; i++) {
-        let precio = productos[i] * cantidad;
-        return precio;
-    }
+function producto(nombre, precio, img) {
+    this.id = productos.length + 1;
+    this.nombre = nombre;
+    this.precio = parseFloat(precio);
 }
 
+console.log(productos);
 
+function findProducto(arr, filtro) {
+    const encontrado = arr.find((producto) => {
+        return producto.nombre.includes(filtro.toLowerCase());
+    });
+    return encontrado;
+}
+let buscar = prompt("Ingresa el nombre del producto")
+const produEncontrado = findService(productos, buscar)
+console.log(produEncontrado);
+
+function filtrar(arr, filtro, param) {
+    return arr.filter((el) => {
+        if (param == "precio") {
+            return el[param] <= filtro;
+        } else if (param === "id") {
+            return el[param] == filtro
+        } else {
+            return el[param].includes(filtro)
+
+        }
+    });
+}
+const porPrecio = filtrar(productos, 1500, "precio")
+
+console.log(porId);
+const porNombre= filtrar(productos, "Cam", "nombre")
+console.log(porNombre);
