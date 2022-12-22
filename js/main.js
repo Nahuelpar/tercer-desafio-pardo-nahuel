@@ -1,12 +1,12 @@
-let edad = prompt("Cuantos años tenes");{
+let edad = prompt("Cuantos años tenes"); {
 
-if (edad <= 17) {
-    alert("Eres menor de edad lo siento , volve cuando tengas 18")
-} else {
-    alert(
-        "Bienvenido ya puedes acceder a nuestros productos"
-    )
-}
+    if (edad <= 17) {
+        alert("Eres menor de edad lo siento , volve cuando tengas 18")
+    } else {
+        alert(
+            "Bienvenido ya puedes acceder a nuestros productos"
+        )
+    }
 }
 
 let productos = prompt("Seleccione el producto deseado: \n1-Fernet Branca. \n2-Gancia. \n3-Voodka Absolut. \n4-Aperol. \n5-whiskey jack daniels. \n6-jagermeister. \nPresioná X para finalizar.");
