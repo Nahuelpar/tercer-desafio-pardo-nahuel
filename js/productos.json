@@ -1,0 +1,67 @@
+[
+    {
+        "id":"whiskey-jack-daniels",
+        "titulo": "Whiskey Jack Daniels",
+        "imagen": "./img/whiskeys/01.jpg",
+        "categoria": {
+           "nombre": "Whiskeys",
+            "id":"whiskeys"
+        }, "precio": 3500
+    },
+    {
+        "id":"jagermeister",
+         "titulo": "Jagermeister",
+        "imagen": "./img/whiskeys/02.jpg",
+        "categoria": {
+           "nombre": "Whiskeys",
+            "id":"whiskeys"
+        }, "precio": 2500
+    },
+    {
+        "id":"fernet-branca",
+        "titulo": "Fernet branca",
+        "imagen": "./img/aperitivos/01.jpg",
+        "categoria": {
+           "nombre": "Aperitivos",
+            "id":"aperitivos"
+        }, "precio": 1500
+    },
+    {
+        "id":"gancia",
+        "titulo": "Gancia",
+        "imagen": "./img/aperitivos/02.jpg",
+        "categoria": {
+           "nombre": "Aperitivos",
+            "id":"aperitivos"
+        },
+        "precio": 900
+    },
+    {
+        "id":"aperol",
+        "titulo": "Aperol",
+        "imagen": "./img/aperitivos/03.jpg",
+        "categoria": {
+           "nombre": "Aperitivos",
+            "id":"aperitivos"
+        }, "precio": 1500
+    },
+    {
+        "id":"campari",
+        "titulo": "Campari",
+        "imagen": "./img/aperitivos/04.jpg",
+        "categoria": {
+           "nombre": "Aperitivos",
+            "id":"aperitivos"
+        },
+        "precio": 1200
+    },
+    {
+        "id":"voodka-absolut",
+        "titulo": "Voodka Absolut",
+        "imagen": "./img/bebidas-blancas/01.jpg",
+        "categoria": {
+           "nombre": "Bebidas Blancas",
+            "id":"bebidas-blancas"
+        }, "precio": 2500
+    }
+]

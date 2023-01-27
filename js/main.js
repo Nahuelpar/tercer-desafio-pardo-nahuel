@@ -1,94 +1,20 @@
+let productos = [];
+fetch("./js/productos.json")
+    .then(Response => Response.json())
+    .then(data => {
+        productos = data;
+        cargarProductos(productos);
 
-const productos = [
-    {
-        id: "whiskey-jack-daniels",
-        titulo: "Whiskey Jack Daniels",
-        imagen: "./img/whiskeys/01.jpg",
-        categoria: {
-            nombre: "Whiskeys",
-            id: "whiskeys"
-        }
-        , precio: 3500,
-    },
-
-    {
-        id: "jagermeister"
-        , titulo: "Jagermeister",
-        imagen: "./img/whiskeys/02.jpg",
-        categoria: {
-            nombre: "Whiskeys",
-            id: "whiskeys"
-        }
-        , precio: 2500,
-    },
-
-
-
-    {
-        id: "fernet-branca",
-        titulo: "Fernet branca",
-        imagen: "./img/aperitivos/01.jpg",
-        categoria: {
-            nombre: "Aperitivos",
-            id: "aperitivos"
-        }, precio: 1500
-    },
-
-
-
-    {
-        id: "gancia",
-        titulo: "Gancia",
-        imagen: "./img/aperitivos/02.jpg",
-        categoria: {
-            nombre: "Aperitivos",
-            id:  "aperitivos"
-        },
-        precio: 900,
-    },
-
-
-    {
-        id: "aperol",
-        titulo: "Aperol",
-        imagen: "./img/aperitivos/03.jpg",
-        categoria: {
-            nombre: "Aperitivos",
-            id: "aperitivos"
-        }, precio: 1500,
-    },
-
-    {
-        id: "campari",
-        titulo: "Campari",
-        imagen: "./img/aperitivos/04.jpg",
-        categoria: {
-            nombre: "Aperitivos",
-            id: "aperitivos"
-        },
-        precio: 1200,
-    },
-
-    {
-        id: "voodka-absolut",
-        titulo: "Voodka Absolut",
-        imagen: "./img/bebidas-blancas/01.jpg",
-        categoria: {
-            nombre: "Bebidas Blancas",
-            id: "bebidas-blancas"
-        }, precio: 2500,
-    }
-
-];
+    })
 
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
 const tituloPrincipal = document.querySelector("#titulo-principal");
-let   botonesAgregar = document.querySelectorAll(".producto-agregar");
+let botonesAgregar = document.querySelectorAll(".producto-agregar");
 const numerito = document.querySelector("#numerito");
 
 function cargarProductos(productosElegidos) {
-    contenedorProductos.innerHTML= "";
+    contenedorProductos.innerHTML = "";
 
     productosElegidos.forEach(producto => {
 
@@ -102,7 +28,7 @@ function cargarProductos(productosElegidos) {
         <button class="producto-agregar" id="${producto.id}">Agregar</button>
         </div>
     `;
-       contenedorProductos.append(div);
+        contenedorProductos.append(div);
     })
     actualizarBotonesAgregar();
 }
@@ -115,61 +41,81 @@ botonesCategorias.forEach(boton => {
         botonesCategorias.forEach(boton => boton.classList.remove("active"));
 
         e.currentTarget.classList.add("active");
-     if(e.currentTarget.id !="todos"){ 
-        const productosCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);
+        if (e.currentTarget.id != "todos") {
+            const productosCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);
 
-        tituloPrincipal.innerText = productosCategoria.categoria.nombre;
+            tituloPrincipal.innerText = productosCategoria.categoria.nombre;
 
-        const productosBoton = productos.filter(producto=> producto.categoria.id === e.currentTarget.id);
-        cargarProductos(productosBoton);
-     } else {
-        tituloPrincipal.innerText = "Todos los productos";
-        cargarProductos(productos);
-     }
+            const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
+            cargarProductos(productosBoton);
+        } else {
+            tituloPrincipal.innerText = "Todos los productos";
+            cargarProductos(productos);
+        }
     })
 })
 
-function actualizarBotonesAgregar(){
-     botonesAgregar = document.querySelectorAll(".producto-agregar");
+function actualizarBotonesAgregar() {
+    botonesAgregar = document.querySelectorAll(".producto-agregar");
 
-     botonesAgregar.forEach(boton=> {
-        boton.addEventListener("click" , agregarAlcarrito);
-     });
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener("click", agregarAlcarrito);
+    });
 }
 let productosEnCarrito;
 
-let   productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
+let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
 
-if(productosEnCarritoLS){
+if (productosEnCarritoLS) {
 
-     productosEnCarrito =JSON.parse(productosEnCarritoLS) ;
-     actualizarNumerito();
-}else{
+    productosEnCarrito = JSON.parse(productosEnCarritoLS);
+    actualizarNumerito();
+} else {
     productosEnCarrito = [];
 }
 
 
 
-function agregarAlcarrito(e){
+function agregarAlcarrito(e) {
+    Toastify({
+        text: "Producto agregado",
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, rgba(228, 194, 2, 0.897), rgba(196, 167, 4, 0.651))",
+         borderRadius: "2 rem",
+         textTransform: "uppercase",
+         fontSize: ".75rem",
+        },
+        offset: {
+            x: "1.5 rem", // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: "1.5 rem" // vertical axis - can be a number or a string indicating unity. eg: '2em'
+          },
+        onClick: function(){} // Callback after click
+      }).showToast();
 
-const idBoton= e.currentTarget.id;
 
-const productoAgregado = productos.find(producto=> producto.id ===idBoton);
+    const idBoton = e.currentTarget.id;
 
-if(productosEnCarrito.some(producto=> producto.id ===idBoton)) {
-const index = productosEnCarrito.findIndex(producto=>producto.id === idBoton);
-productosEnCarrito [index].cantidad++;
-}else{
-    productoAgregado.cantidad = 1;
-    productosEnCarrito.push(productoAgregado);
+    const productoAgregado = productos.find(producto => producto.id === idBoton);
+
+    if (productosEnCarrito.some(producto => producto.id === idBoton)) {
+        const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
+        productosEnCarrito[index].cantidad++;
+    } else {
+        productoAgregado.cantidad = 1;
+        productosEnCarrito.push(productoAgregado);
+    }
+    actualizarNumerito();
+
+    localStorage.setItem("productos-en-carritos", JSON.stringify(productosEnCarrito));
+
 }
-actualizarNumerito();
 
-localStorage.setItem("productos-en-carritos" , JSON.stringify(productosEnCarrito));
-
-}
-
-function actualizarNumerito (){
-    let nuevoNumerito = productosEnCarrito.reduce((acc,producto)=> acc+ producto.cantidad ,0);
-numerito.innerText = nuevoNumerito; 
+function actualizarNumerito() {
+    let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+    numerito.innerText = nuevoNumerito;
 }
