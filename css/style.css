@@ -13,7 +13,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:sans-serif
+    font-family: 'Rubik',sans-serif;
 }
 
 h1,h2,h3,h4,h5,h6,p,a,input,textarea ,ul{
@@ -54,7 +54,7 @@ aside{
 .menu{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: .5rem;
 }
 
 .boton-menu{
@@ -68,18 +68,18 @@ aside{
     font-weight: 600;
     padding: 1rem;
     font-size: .85rem ;
+    width: 100%;
 
 }
 .boton-menu.active {
     background-color: var(--clr-yellow);
     color: var(--clr-main);
-    width: 100%;
     border-top-left-radius: 1rem;
     border-bottom-left-radius:1rem ;
     position: relative;
 
 }
-.boton-menu.boton-menu.active::before{
+.boton-menu.active::before{
     content:"" ;
     position: absolute;
     width: 1rem;
@@ -90,7 +90,7 @@ aside{
     border-bottom-right-radius: .5rem ;
     box-shadow: 0 1rem 0  var(--clr-yellow);
 }
-.boton-menu.boton-menu.active::after{
+.boton-menu.active::after{
     content:"" ;
     position: absolute;
     width: 1rem;
@@ -128,12 +128,13 @@ main{
     background-color: white;
     margin: 1rem;
     border-radius: 2rem;
-    padding: 2rem;
+    padding: 3rem;
     margin-left: 0;
 }
 
 .titulo-principal{
     color: var(--clr-yellow);
+    margin-bottom: 2rem;
 }
 
 .contenedor-principal{
@@ -168,7 +169,7 @@ main{
     border: 0;
     background-color: var(--clr-gray);
     color: var(--clr-main);
-    padding: .5rem;
+    padding: .4rem;
     text-transform: uppercase;
     border-radius: 2rem;
     cursor: pointer;
@@ -191,7 +192,7 @@ main{
 .carrito-vacio ,
 .carrito-comprado{
     color: var(--clr-main);
-    display: none;
+    
 }
 
 .carrito-productos {
@@ -249,7 +250,6 @@ border-radius: 1rem;
     border-radius: 1rem;
     color: var(--clr-main);
     text-transform: uppercase;
-    cursor: pointer;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
     gap: 1rem;
@@ -260,7 +260,6 @@ border-radius: 1rem;
     border: 0;
     background-color: var(--clr-main);
     padding: 1rem;
-    border-radius: 1rem;
     color: white;
     text-transform: uppercase;
     cursor: pointer;

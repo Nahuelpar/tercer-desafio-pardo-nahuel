@@ -14,6 +14,11 @@ const tituloPrincipal = document.querySelector("#titulo-principal");
 let botonesAgregar = document.querySelectorAll(".producto-agregar");
 const numerito = document.querySelector("#numerito");
 
+botonesCategorias.forEach(boton => boton.addEventListener("click", () => {
+    aside.classList.remove("aside-visible");
+}))
+
+
 function cargarProductos(productosElegidos) {
     contenedorProductos.innerHTML = "";
 
@@ -43,9 +48,9 @@ botonesCategorias.forEach(boton => {
 
         e.currentTarget.classList.add("active");
         if (e.currentTarget.id != "todos") {
-            const productosCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);
+            const productoCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);
 
-            tituloPrincipal.innerText = productosCategoria.categoria.nombre;
+            tituloPrincipal.innerText = productoCategoria.categoria.nombre;
 
             const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
             cargarProductos(productosBoton);

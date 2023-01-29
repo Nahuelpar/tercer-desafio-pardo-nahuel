@@ -1,5 +1,5 @@
-let productosEnCarrito = localStorage.getItem("productos-en-carrito");
-productosEnCarrito = JSON.parse(productosEnCarrito);
+let productosEnCarrito = JSON.parse(localStorage.getItem("productos-en-carritos"));
+
 
 const contenedorCarritoVacio = document.querySelector("#carrito-vacio");
 const contenedorCarritoProductos = document.querySelector("#carrito-productos");
@@ -27,6 +27,7 @@ function cargarProductosCarrito() {
 
 
     productosEnCarrito.forEach(producto => {
+
       const div = document.createElement("div");
       div.classList.add("carrito-producto");
       div.innerHTML = `
@@ -56,6 +57,8 @@ function cargarProductosCarrito() {
 
     })
 
+    actualizarBotonesEliminar();
+    actualizarTotal();
 
   } else {
 
@@ -65,8 +68,7 @@ function cargarProductosCarrito() {
     contenedorCarritoComprado.classList.add("disabled");
   };
 
-  actualizarBotonesEliminar();
-  actualizarTotal();
+  
 }
 cargarProductosCarrito();
 
@@ -102,6 +104,7 @@ function eliminarDelCarrito(e) {
 
   const idBoton = e.currentTarget.id;
   const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
+
   productosEnCarrito.splice(index, 1);
   cargarProductosCarrito();
 
@@ -150,7 +153,7 @@ function comprarCarrito() {
 
   localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 
-  contenedorCarritoVacio.classList.remove("disabled");
+  contenedorCarritoVacio.classList.add("disabled");
   contenedorCarritoProductos.classList.add("disabled");
   contenedorCarritoAcciones.classList.add("disabled");
   contenedorCarritoComprado.classList.remove("disabled");
