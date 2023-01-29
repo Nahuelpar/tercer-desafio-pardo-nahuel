@@ -1,4 +1,5 @@
 let productos = [];
+
 fetch("./js/productos.json")
     .then(Response => Response.json())
     .then(data => {
